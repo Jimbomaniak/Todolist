@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+body {
+  font-family: 'Nunito', sans-serif;
+  margin: auto;
+  padding: 0;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+form {
+  display: flex;
+  flex-direction: row;
+}
+.todo-delete {
+  color: red;
+}

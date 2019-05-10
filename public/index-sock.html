@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chat</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <main>
+        <form>
+          <input class="todo" autocomplete="off" placeholder="Enter todo" />
+          <button tabindex="0" class="btn-submit">Add</button>
+        </form>
+        <ul class="todo-list"></ul>
+      </main>
+    </div>
+
+    <script src="../socket.io/socket.io.js"></script>
+    <script src="/public/index.js"></script>
+  </body>
+</html>
