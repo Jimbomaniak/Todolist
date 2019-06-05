@@ -4,15 +4,6 @@
   const todoList = document.querySelector('.todo-list');
   const form = document.querySelector('form');
 
-
-  function validate(fn, todo) {
-    const regex = /зрада/i;
-    if (todo.text.match(regex)) {
-      alert('ЗРАДАААА')
-    } else {
-      fn(todo)
-    }
-  }
   function addTodo(todo) {
     socket.emit('add todo', todo);
     todoInput.value = '';
@@ -47,7 +38,7 @@
     const todo = {
       text: todoInput.value,
     };
-    validate(addTodo,todo);
+    addTodo(todo);
   });
 
   socket.on('todo list', todos => {
@@ -88,7 +79,7 @@
     todoList.appendChild(el);
     saveButton.addEventListener('click', event => {
       const todoText = event.target.parentNode.querySelector('.todo-text').value;
-      validate(saveTodo, {_id: event.target.id, text: todoText});
+      saveTodo({ _id: event.target.id, text: todoText });
     });
     deleteButton.addEventListener('click', event => {
       deleteTodo(event.target.id);

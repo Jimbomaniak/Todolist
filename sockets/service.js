@@ -1,6 +1,12 @@
 const sockets = require('socket.io');
 const TodoService = require('../entities/todos/todoService');
 
+const REGEX = /^зрада$/i;
+
+function isValid(text) {
+  return !Boolean(text.match(REGEX));
+}
+
 const createSocketConnection = http => {
   const io = sockets(http);
 
@@ -8,11 +14,13 @@ const createSocketConnection = http => {
     const todos = await TodoService.getAllTodos();
 
     socket.on('add todo', async todo => {
+      if (!isValid(todo.text)) throw Error('Not valid');
       const addedTodo = await TodoService.addTodo(todo);
       io.emit('add todo', addedTodo);
     });
 
     socket.on('save todo', async todo => {
+      if (!isValid(todo.text)) throw Error('Not valid');
       const status = await TodoService.editTodo(todo._id, { text: todo.text });
       if (status.ok) {
         io.emit('save todo', todo);
